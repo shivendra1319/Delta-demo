@@ -1,5 +1,31 @@
 <%-layout("/layouts/boilerplate")%>
 
+<style>
+    @media (min-width:344px) and (max-width:600px){
+        .show-img{
+            width: 330px !important;
+            margin-left: -80px !important;
+        }
+
+        .card-text{
+            font-size: 1rem !important;
+            text-align: center;
+        }
+        
+        .edit-btn{
+            width: 80px;
+        }
+
+        .review-card {
+            width: 250px !important;
+        }
+
+        .review-card-rating{
+            font-size: 0.3rem !important;
+        }   
+    } 
+</style>
+
     <body>
         <div class="row mt-3">
             <div class="col-8 offset-2">
@@ -23,13 +49,13 @@
                 <div class="btns">
                     <a href="/listing/<%=listing._id%>/edit" class="btn btn-dark edit-btn col-1 offset-3 mb-4">Edit</a>
                     <form method="post" action="/listing/<%=listing._id%>?_method=DELETE">
-                        <button class="btn btn-dark offset-4">Delete</button>
+                        <button class="btn btn-dark offset-4 delete-btn">Delete</button>
                     </form>
                 </div>
                 <%}%>
 
 
-                    <div class="col-8 offset-2">
+                    <div class="col-8 offset-2 review-div">
 
                         <%if(currUser){%>
                             <hr>
@@ -70,14 +96,12 @@
                         <h4>All Reviews</h4>
                         <div class="row">
                             <%for(review of listing.reviews){%>
-                                <div class="card col-5 mt-2 mb-2 ms-3">
+                                <div class="card col-5 mt-2 mb-2 ms-3 review-card">
                                     <div class="card-body">
                                         <h5 class="card-title">@<%=review.author.username%>
                                         </h5>
-                                        <p class="card-text">
-                                            <%=review.comment%>
-                                        </p>
-                                        <p class="starability-result card-text" data-rating="<%=review.rating%>"></p>
+                                        <p class="card-text review-card-info"><%=review.comment%></p>
+                                        <p class="starability-result card-text review-card-rating" data-rating="<%=review.rating%>"></p>
                                     </div>
                                     <%if(currUser&&review.author._id.equals(currUser._id)){%>
                                         <form class="mb-3" method="post"

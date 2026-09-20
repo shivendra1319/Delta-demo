@@ -1,9 +1,21 @@
 <%- layout("/layouts/boilerplate")%>
 
+
+<style>
+
+.create-form h3{
+    font-size: 1.25rem !important;
+    text-align: center !important;
+}
+
+
+</style>
+
+
     <body>
         <div class="row">
-            <div class="col-6 offset-3">
-                <h3 class="mb-3 mt-3 col-6 offset-3">Create New Listing</h3>
+            <div class="col-10 col-md-8 col-lg-6 mx-auto create-form">
+                <h3 class="mb-3 mt-3 col-8 offset-2">Create New Listing</h3>
                 <form method="post" action="/listing" class="needs-validation" novalidate>
                     <div class="mb-3">
                         <label for="title" class="form-label">Title</label>
